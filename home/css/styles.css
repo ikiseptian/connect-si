@@ -1,0 +1,378 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #4CAF50;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.welcome {
+    margin: 20px 0;
+}
+
+.welcome h1 {
+    color: #FFD700;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.welcome h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.welcome p {
+    color: #666;
+}
+
+.event-banner {
+    width: 100%;
+    background-color: #1a1a1a;
+    color: white;
+    margin: 20px 0;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    padding: 30px;
+}
+
+.event-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.event-banner h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.event-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.event-info {
+    flex: 1;
+}
+
+.event-info p {
+    margin: 10px 0;
+}
+
+.event-participants {
+    flex: 2;
+    padding-left: 30px;
+}
+
+.event-participants ol {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.event-participants li {
+    margin: 5px 0;
+}
+
+.parallel-session {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.parallel-session h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.sessions {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.session {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 5px;
+    flex: 1;
+}
+
+.session-title {
+    font-size: 14px;
+}
+
+.registration {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-btn {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-btn:hover {
+    background-color: #cc0000;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.slider-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.important-dates {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.important-dates h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #e0e0e0;
+}
+
+/* Icons */
+.calendar-icon::before {
+    content: "📅";
+    margin-right: 5px;
+}
+
+.clock-icon::before {
+    content: "⏰";
+    margin-right: 5px;
+}
+
+.zoom-icon::before {
+    content: "🎥";
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .welcome h1 {
+        font-size: 2em;
+    }
+
+    .event-details {
+        flex-direction: column;
+    }
+    
+    .event-participants {
+        padding-left: 0;
+        margin-top: 20px;
+    }
+    
+    .sessions {
+        flex-direction: column;
+    }
+    
+    .session {
+        margin-bottom: 10px;
+    }
+
+    .slider-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+}
+
+/* aset prodi */
+
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header styling */
+.header {
+    background-color: #4CAF50;
+    padding: 15px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .menu {
+    display: flex;
+    gap: 20px;
+}
+
+.header .menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.header .profile {
+    font-size: 1.5em;
+}
+
+/* Main container styling */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; /* Remove the existing 20px margin */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 20px; /* Add padding for spacing inside the container */
+}
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.title-bar .actions {
+    display: flex;
+    gap: 10px;
+}
+
+.title-bar .actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+.search-bar {
+    margin-left: auto;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table-row-empty td {
+    height: 50px;
+    background-color: #f9f9f9;
+}
+
+
+
