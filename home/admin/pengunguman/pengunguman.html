@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Pengumuman</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
@@ -16,23 +16,33 @@
 
     <nav class="navbar">
         <div class="logo">
-            <img src="../image/logo.png" alt="Logo" style="height: 50px;">
-            <img src="../image/login2.png" alt="Logo" style="height: 50px; margin-left: 10px;">
+            <img src="../../image/logo.png" alt="Logo" style="height: 50px;">
+            <img src="../../image/login2.png" alt="Logo" style="height: 50px; margin-left: 10px;">
         </div>
         <div class="nav-links" style="margin-right: 710px;">
-            <a href="dashboard.html">Beranda</a>
+            <a href="../dashboard/dashboard.html">Beranda</a>
             <a href="#">Tanggal Penting</a>
-            <a href="pengunguman.html">Pengumuman</a>
-            <a href="#">Surat Menyurat</a>
-            <a href="#">Arsip Surat</a>
-            <a href="aset_prodi.html">Aset Prodi</a>
+            <a href="../pengunguman/pengunguman.html">Pengumuman</a>
+            <a href="../surat_surat/surat_surat.html">Surat Menyurat</a>
+        
+            <!-- Dropdown for "Arsip Surat" -->
+            <div style="position: relative; display: inline-block;">
+                <a href="#" style="text-decoration: none;">Arsip Surat</a>
+                <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;">
+                    <a href="../aset_masuk/aset_masuk" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
+                    <a href="../aset_keluar/aset_keluar.html" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
+                </div>
+            </div>
+            
+            <a href="../aset_prodi/aset_prodi.html">Aset Prodi</a>
         </div>
         <div>
-            <a href="profil.html">
-                <img src="../image/login2.png"  style="height: 30px;" alt="">
+            <a href="../profil/profil.html">
+                <img src="../../image/login2.png"  style="height: 30px;" alt="">
             </a>
         </div>
     </nav>
+    
     <main class="container" style="margin-top: 20px;"">
         <div class="action-bar">
             <button class="back-btn">
@@ -57,7 +67,7 @@
         <div class="document-preview" >
             <div class="preview-box" style="height: 500px;">
                 <div class="preview-placeholder">
-                  <img src="../image/login2.png" alt="">
+                  <img src="../../image/login2.png" alt="">
                 </div>
             </div>
         </div>
@@ -77,5 +87,7 @@
             <h2 class="webinar-title">Webinar #2 Fakultas Sains dan Informatika Unjani</h2>
         </div>
     </main>
+    <script src="../../js/drop.js"></script>
+
 </body>
 </html>

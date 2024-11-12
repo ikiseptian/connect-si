@@ -1,28 +1,42 @@
+<?php
+include '../../db.php';  // Memasukkan koneksi ke database
+
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connect SI Unjani</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+
 </head>
 <ht>
     <nav class="navbar">
         <div class="logo">
-            <img src="../image/logo.png" alt="Logo" style="height: 50px;">
-            <img src="../image/login2.png" alt="Logo" style="height: 50px; margin-left: 10px;">
+            <img src="../../image/logo.png" alt="Logo" style="height: 50px;">
+            <img src="../../image/login2.png" alt="Logo" style="height: 50px; margin-left: 10px;">
         </div>
         <div class="nav-links" style="margin-right: 710px;">
-            <a href="dashboard.html">Beranda</a>
+            <a href="../dashboard/dashboard.html">Beranda</a>
             <a href="#">Tanggal Penting</a>
-            <a href="pengunguman.html">Pengumuman</a>
-            <a href="#">Surat Menyurat</a>
-            <a href="#">Arsip Surat</a>
-            <a href="aset_prodi.html">Aset Prodi</a>
+            <a href="../pengunguman/pengunguman.html">Pengumuman</a>
+            <a href="../surat_surat/surat_surat.html">Surat Menyurat</a>
+        
+            <!-- Dropdown for "Arsip Surat" -->
+            <div style="position: relative; display: inline-block;">
+                <a href="#" style="text-decoration: none;">Arsip Surat</a>
+                <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;">
+                    <a href="../aset_masuk/aset_masuk" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
+                    <a href="../aset_keluar/" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
+                </div>
+            </div>
+            
+            <a href="../aset_prodi/aset_prodi.html">Aset Prodi</a>
         </div>
         <div>
-           <a href="profil.html">
-            <img src="../image/login2.png"  style="height: 30px;" alt="">
+           <a href="../profil/profil.html">
+            <img src="../../image/login2.png"  style="height: 30px;" alt="">
            </a>
         </div>
     </nav>
@@ -81,7 +95,7 @@
                     <div class="slide">
                         <div class="event-content">
                             <h3>Event Kedua</h3>
-                            <img src="../image/login2.png" style="height: 200px; justify-content: center;" alt="">
+                            <img src="../../image/login2.png" style="height: 200px; justify-content: center;" alt="">
                             <!-- Isi konten slide 2 -->
                         </div>
                     </div>
@@ -102,31 +116,36 @@
         <div class="important-dates">
             <h2>Tanggal Penting</h2>
             <table>
-                <tr>
-                    <th>Judul</th>
-                    <th>Tanggal</th>
-                </tr>
-                <tr>
-                    <td>HASAN CILUNG</td>
-                    <td>Tanggal 27 oktober 2024</td>
-                </tr>
-                <tr>
-                    <td>HADI</td>
-                    <td>Tanggal 27 oktober 2024</td>
-                </tr>
-                <tr>
-                    <td>HADI</td>
-                    <td>Tanggal 27 oktober 2024</td>
-                </tr>
-                <tr>
-                    <td>KUMIS UCUP</td>
-                    <td>Tanggal 27 oktober 2024</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Judul</th>
+                        <th>Tanggal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php
+                    // Menangani koneksi dan query dalam satu blok.
+                    $query = "SELECT judul, DATE_FORMAT(tanggal, '%d %M %Y') AS tanggal_formatted FROM tanggal_penting ORDER BY tanggal ASC";
+                    $result = $pdo->query($query); // Langsung mengeksekusi query tanpa prepare
+
+                    // Memeriksa apakah ada data yang ditemukan
+                    if ($result && $result->rowCount() > 0) {
+                        // Menampilkan hasil query dalam tabel
+                        while ($date = $result->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<tr><td>" . htmlspecialchars($date['judul']) . "</td><td>" . htmlspecialchars($date['tanggal_formatted']) . "</td></tr>";
+                        }
+                    } else {
+                        // Jika tidak ada data ditemukan
+                        echo "<tr><td colspan='2'>Belum ada tanggal penting yang ditambahkan</td></tr>";
+                    }
+                    ?>
+                </tbody>
             </table>
         </div>
     </div>
-
     
-    <script src="../js/sliders.js"></script>
+    <script src="../../js/sliders.js"></script>
+    <script src="../../js/drop.js"></script>
+
 </body>
 </html>
