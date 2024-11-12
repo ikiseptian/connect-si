@@ -35,6 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Aset Prodi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .container {
             max-width: 800px;
@@ -108,6 +110,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .submit-button:hover {
             background-color: #45a049;
         }
+
+        /* Custom styles for SweetAlert2 buttons */
+        .swal2-confirm {
+            background-color: #4CAF50 !important;
+            color: white !important;
+            padding: 10px 20px; /* Added padding */
+            margin: 0 10px; /* Added margin */
+        }
+
+        .swal2-cancel {
+            background-color: #f44336 !important;
+            color: white !important;
+            padding: 10px 20px; /* Added padding */
+            margin: 0 10px; /* Added margin */
+        }
     </style>
 </head>
 <body>
@@ -117,11 +134,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container">
         <div class="header">
-            <a href="aset_prodi.php" class="back-button">←</a>
+            <a href="aset_prodi.php" class="back-button ">←</a>
             <h2>Tambah Aset Prodi</h2>
         </div>
 
-        <form method="POST" action="">
+        <form id="addAssetForm" method="POST" action="">
             <div class="form-group">
                 <label for="no">No Aset</label>
                 <input type="text" id="no" name="no" required>
@@ -152,8 +169,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="number" id="jumlah" name="jumlah" required>
             </div>
 
-            <button type="submit" class="submit-button">Tambah</button>
+            <button type="button" class="submit-button" onclick="confirmAdd()">Tambah</button>
         </form>
     </div>
+
+    <script>
+        function confirmAdd() {
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "swal2-confirm",
+                    cancelButton: "swal2-cancel"
+                },
+                buttonsStyling: false
+            });
+
+            swalWithBootstrapButtons.fire({
+                title: "Are you sure?",
+                text: "You are about to add a new asset!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, add it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('addAssetForm').submit();
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Your action has been cancelled.",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+    </script>
 </body>
 </html>

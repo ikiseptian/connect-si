@@ -18,7 +18,7 @@ include '../../db.php';  // Memasukkan koneksi ke database
             <img src="../../image/login2.png" alt="Logo" style="height: 50px; margin-left: 10px;">
         </div>
         <div class="nav-links" style="margin-right: 710px;">
-            <a href="../dashboard/dashboard.html">Beranda</a>
+            <a href="../dashboard/dashboard.php">Beranda</a>
             <a href="#">Tanggal Penting</a>
             <a href="../pengunguman/pengunguman.html">Pengumuman</a>
             <a href="../surat_surat/surat_surat.html">Surat Menyurat</a>
