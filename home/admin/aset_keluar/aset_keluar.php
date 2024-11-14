@@ -42,7 +42,7 @@ include '../../db.php'; // Pastikan jalur ini benar
         <a href="../dashboard/dashboard.php">Beranda</a>
         <a href="#">Tanggal Penting</a>
         <a href="../pengunguman/pengunguman.html">Pengumuman</a>
-        <a href="../surat_surat/surat_surat.html">Surat Menyurat</a>
+        <a href="../surat_surat/surat_surat.php ">Surat Menyurat</a>
         <div style="position: relative; display: inline-block;">
             <a href="#" style="text-decoration: none;">Arsip Surat</a>
             <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px  0px rgba(0,0,0,0.2); z-index: 1;">

@@ -52,11 +52,11 @@ include '../../db.php';
                 <a href="#" style="text-decoration: none;">Arsip Surat</a>
                 <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;">
                     <a href="../aset_masuk/aset_masuk.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
-                    <a href="../aset_keluar/" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
+                    <a href="../aset_keluar/aset_keluar.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
                 </div>
             </div>
             
-            <a href="../aset_prodi/aset_prodi.html">Aset Prodi</a>
+            <a href="../aset_prodi/aset_prodi.php">Aset Prodi</a>
         </div>
         <div>
            <a href="../profil/profil.html">
@@ -98,19 +98,20 @@ include '../../db.php';
         <table>
             <thead>
                 <tr>
-                    <th>No Aset</th>
-                    <th>Nama Aset</th>
-                    <th>Kategori</th>
-                    <th>Kondisi</th>
-                    <th>Penanggung jawab</th>
-                    <th>Jumlah</th>
-                    <th>Status</th>
+                   <th>Nim</th>
+                    <th>Nama</th>
+                    <th>Tipe</th>
+                    <th>Tanggal</th>
+                    <th>Perihal</th>
+                    <th>Tujuan</th>
+                    <th>Link Pengiriman</th>
+                    <th>status</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 // Base query for fetching data
-                $query = "SELECT id, no, nama, kategori, kondisi, penanggung_jawab, jumlah FROM aset_prodi";
+                $query = "SELECT id, nim, nama, tipe, tanggal, perihal, tujuan, link FROM surat_surat";
                 
                 // Check if search term is provided
                 if (isset($_GET['search']) && !empty($_GET['search'])) {
@@ -133,12 +134,13 @@ include '../../db.php';
                 if ($stmt->rowCount() > 0) {
                     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                         echo "<tr>
-                                <td>" . htmlspecialchars($row['no']) . "</td>
+                                <td>" . htmlspecialchars($row['nim']) . "</td>
                                 <td>" . htmlspecialchars($row['nama']) . "</td>
-                                <td>" . htmlspecialchars($row['kategori']) . "</td>
-                                <td>" . htmlspecialchars($row['kondisi']) . "</td>
-                                <td>" . htmlspecialchars($row['penanggung_jawab']) . "</td>
-                                <td>" . htmlspecialchars($row['jumlah']) . "</td>
+                                <td>" . htmlspecialchars($row['tipe']) . "</td>
+                                <td>" . htmlspecialchars($row['tanggal']) . "</td>
+                                <td>" . htmlspecialchars($row['perihal']) . "</td>
+                                <td>" . htmlspecialchars($row['tujuan']) . "</td>
+                                <td>" . htmlspecialchars($row['link']) . "</td>
                                 <td>
                                     <a href='#' onclick='confirmDelete(" . $row['id'] . ")'>
                                         <img src='../../image/delete.png' style='height: 30px;' alt=''>

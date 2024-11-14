@@ -21,7 +21,7 @@ include '../../db.php';  // Memasukkan koneksi ke database
             <a href="../dashboard/dashboard.php">Beranda</a>
             <a href="#">Tanggal Penting</a>
             <a href="../pengunguman/pengunguman.html">Pengumuman</a>
-            <a href="../surat_surat/surat_surat.html">Surat Menyurat</a>
+            <a href="../surat_surat/surat_surat.php">Surat Menyurat</a>
         
             <!-- Dropdown for "Arsip Surat" -->
             <div style="position: relative; display: inline-block;">
