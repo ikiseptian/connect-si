@@ -42,7 +42,7 @@ include '../../db.php';
             <img src="../../image/login2.png" alt="Logo" style="height: 50px; margin-left: 10px;">
         </div>
         <div class="nav-links" style="margin-right: 710px;">
-            <a href="../dashboard/dashboard.html">Beranda</a>
+            <a href="../dashboard/dashboard.php">Beranda</a>
             <a href="#">Tanggal Penting</a>
             <a href="../pengunguman/pengunguman.html">Pengumuman</a>
             <a href="../surat_surat/surat_surat.html">Surat Menyurat</a>
@@ -51,7 +51,7 @@ include '../../db.php';
             <div style="position: relative; display: inline-block;">
                 <a href="#" style="text-decoration: none;">Arsip Surat</a>
                 <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;">
-                    <a href="../aset_masuk/aset_masuk" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
+                    <a href="../aset_masuk/aset_masuk.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
                     <a href="../aset_keluar/" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
                 </div>
             </div>
@@ -60,7 +60,7 @@ include '../../db.php';
         </div>
         <div>
            <a href="../profil/profil.html">
-            <img src="../../image/login2.png"  style="height: 30px;" alt="">
+            <img src="../../image/prof.png"  style="height: 30px;" alt="">
            </a>
         </div>
     </nav>

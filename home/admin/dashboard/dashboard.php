@@ -1,6 +1,5 @@
 <?php
 include '../../db.php';  // Memasukkan koneksi ke database
-
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -9,9 +8,10 @@ include '../../db.php';  // Memasukkan koneksi ke database
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connect SI Unjani</title>
     <link rel="stylesheet" href="../../css/styles.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<ht>
+<body>
     <nav class="navbar">
         <div class="logo">
             <img src="../../image/logo.png" alt="Logo" style="height: 50px;">
@@ -27,16 +27,16 @@ include '../../db.php';  // Memasukkan koneksi ke database
             <div style="position: relative; display: inline-block;">
                 <a href="#" style="text-decoration: none;">Arsip Surat</a>
                 <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;">
-                    <a href="../aset_masuk/aset_masuk" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
-                    <a href="../aset_keluar/" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
+                    <a href="../aset_masuk/aset_masuk.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
+                    <a href="../aset_keluar/aset_keluar.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
                 </div>
             </div>
             
-            <a href="../aset_prodi/aset_prodi.html">Aset Prodi</a>
+            <a href="../aset_prodi/aset_prodi.php">Aset Prodi</a>
         </div>
         <div>
            <a href="../profil/profil.html">
-            <img src="../../image/login2.png"  style="height: 30px;" alt="">
+            <img src="../../image/prof.png"  style="height: 30px;" alt="">
            </a>
         </div>
     </nav>
@@ -78,12 +78,12 @@ include '../../db.php';  // Memasukkan koneksi ke database
                                 <div class="sessions">
                                     <div class="session">
                                         <p class="session-title">Menjadi Master Kimia Millennial Bertaraf Internasional di Usia 23 Tahun</p>
-                                    </div>
-                                    <div class="session">
+                                    </div class="session">
                                         <p class="session-title">Pengenalan Teknologi Game dan Digital Marketing</p>
                                     </div>
                                 </div>
                             </div>
+                            
 
                             <div class="registration">
                                 <button class="register-btn">Free Registration</button>
@@ -92,21 +92,12 @@ include '../../db.php';  // Memasukkan koneksi ke database
                     </div>
 
                     <!-- Slide 2 -->
-                    <div class="slide">
-                        <div class="event-content">
-                            <h3>Event Kedua</h3>
-                            <img src="../../image/login2.png" style="height: 200px; justify-content: center;" alt="">
-                            <!-- Isi konten slide 2 -->
-                        </div>
-                    </div>
+                     
+                    <!--  -->
 
                     <!-- Slide 3 -->
                     <div class="slide">
-                        <div class="event-content">
-                            <h3>Event Ketiga</h3>
-                            <!-- Isi konten slide 3 -->
-                        </div>
-                    </div>
+                     
                 </div>
                 <button class="slider-btn prev">&#10094;</button>
                 <button class="slider-btn next">&#10095;</button>
@@ -115,35 +106,108 @@ include '../../db.php';  // Memasukkan koneksi ke database
 
         <div class="important-dates">
             <h2>Tanggal Penting</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Judul</th>
-                        <th>Tanggal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
+            <div class="container" style="margin-top: 20px;">
+                <div class="title-bar">
+                    <span>Aset Prodi</span>
+                    <div class="actions">
+                        <form action="tambah.php" method="get">
+                            <button type="submit" title="Tambah Aset Prodi">
+                                <img src="../../image/tambah.png" style="height: 30px;" alt="">
+                            </button>
+                        </form>
+                        <button onclick="window.open('print_aset.php', '_blank')">
+                            <img src="../../image/print.png" style="height: 30px; padding-right: 10px;" alt="">
+                        </button>
+
+                        <!-- Search form -->
+                        <form method="GET" style="display: inline;">
+                            <input type="text" name="search" class="search-bar" placeholder="Search by name..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Judul</th>
+                            <th>Tanggal</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
                     // Menangani koneksi dan query dalam satu blok.
-                    $query = "SELECT judul, DATE_FORMAT(tanggal, '%d %M %Y') AS tanggal_formatted FROM tanggal_penting ORDER BY tanggal ASC";
-                    $result = $pdo->query($query); // Langsung mengeksekusi query tanpa prepare
+                    $search = isset($_GET['search']) ? "%" . $_GET['search'] . "%" : "%";
+                    $query = "SELECT id, judul, DATE_FORMAT(tanggal, '%d %M %Y') AS tanggal_formatted FROM tanggal_penting WHERE judul LIKE ? ORDER BY tanggal ASC";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->execute([$search]);
 
                     // Memeriksa apakah ada data yang ditemukan
-                    if ($result && $result->rowCount() > 0) {
+                    if ($stmt && $stmt->rowCount() > 0) {
                         // Menampilkan hasil query dalam tabel
-                        while ($date = $result->fetch(PDO::FETCH_ASSOC)) {
-                            echo "<tr><td>" . htmlspecialchars($date['judul']) . "</td><td>" . htmlspecialchars($date['tanggal_formatted']) . "</td></tr>";
+                        while ($date = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<tr>
+                                    <td>" . htmlspecialchars($date['judul']) . "</td>
+                                    <td>" . htmlspecialchars($date['tanggal_formatted']) . "</td>
+                                    <td>
+                                        <a href='#' onclick='confirmDelete(" . $date['id'] . ")'>
+                                            <img src='../../image/delete.png' style='height: 30px;' alt=''>
+                                        </a>
+                                        <a href='edit.php?id=" . $date['id'] . "'>
+                                            <img src='../../image/edit.png' style ='height: 30px; padding-left: 15px;' alt=''>
+                                        </a>
+                                    </td>
+                                  </tr>";
                         }
                     } else {
                         // Jika tidak ada data ditemukan
-                        echo "<tr><td colspan='2'>Belum ada tanggal penting yang ditambahkan</td></tr>";
+                        echo "<tr><td colspan='3'>Belum ada tanggal penting yang ditambahkan</td></tr>";
                     }
                     ?>
-                </tbody>
-            </table>
+                
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    
+
+    <script>
+        function confirmDelete(id) {
+            const searchParam = new URLSearchParams(window.location.search).get("search");
+            const deleteUrl = 'hapus.php?id=' + id + (searchParam ? '&search=' + encodeURIComponent(searchParam) : '');
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: "swal2-confirm",
+                    cancelButton: "swal2-cancel"
+                },
+                buttonsStyling: false
+            });
+
+            swalWithBootstrapButtons.fire({
+ title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!",
+                cancelButtonText: "No, cancel!",
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = deleteUrl;
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Your action has been cancelled.",
+                        icon: "error"
+                    });
+                }
+            });
+        }
+    </script>
     <script src="../../js/sliders.js"></script>
     <script src="../../js/drop.js"></script>
 
