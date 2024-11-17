@@ -225,4 +225,4 @@ if (isset($_GET['logout'])) {
     <script src="../../js/drop.js"></script>
 
 </body>
-</html>
+</html>u
