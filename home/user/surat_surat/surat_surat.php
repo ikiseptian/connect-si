@@ -41,25 +41,22 @@ include '../../db.php';
             <img src="../../image/logo.png" alt="Logo" style="height: 50px;">
             <img src="../../image/login2.png" alt="Logo" style="height: 50px; margin-left: 10px;">
         </div>
-        <div class="nav-links" style="margin-right: 710px;">
-            <a href="../dashboard/dashboard.php">Beranda</a>
-            <a href="#">Tanggal Penting</a>
-            <a href="../pengunguman/pengunguman.html">Pengumuman</a>
-            <a href="../surat_surat/surat_surat.php">Surat Menyurat</a>
-        
-            <!-- Dropdown for "Arsip Surat" -->
-            <div style="position: relative; display: inline-block;">
-                <a href="#" style="text-decoration: none;">Arsip Surat</a>
-                <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;">
-                    <a href="../aset_masuk/aset_masuk.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
-                    <a href="../aset_keluar/aset_keluar.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
-                </div>
+        <div class="nav-links" style="margin-right: 630px;">
+        <a href="../../user/dashboard/dashboard.php">Beranda</a>
+        <a href="../../user/tanggal_penting/tanggal_penting.php">Tanggal Penting</a>
+        <a href="../../user/pengunguman/pengunguman.php">Pengumuman</a>
+        <a href="../../user/surat_surat/surat_surat.php ">Surat Menyurat</a>
+        <div style="position: relative; display: inline-block;">
+            <a href="#" style="text-decoration: none;">Arsip Surat</a>
+            <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px  0px rgba(0,0,0,0.2); z-index: 1;">
+                <a href="../../user/aset_masuk/aset_masuk.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
+                <a href="../../user/aset_keluar/aset_keluar.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
             </div>
-            
-            <a href="../aset_prodi/aset_prodi.php">Aset Prodi</a>
         </div>
-        <div>
-           <a href="../profil/profil.html">
+        <a href="../../user/aset_prodi/aset_prodi.php">Aset Prodi</a>
+    </div>
+    <div>
+           <a href="../../admin/profil/profil.php">
             <img src="../../image/prof.png"  style="height: 30px;" alt="">
            </a>
         </div>

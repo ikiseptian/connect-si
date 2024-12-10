@@ -23,5 +23,27 @@ if (!empty($search)) {
 $stmt->execute();
 
 // Check if there are any results
-
+if ($stmt->rowCount() > 0) {
+    // Display results in the table
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo "<tr>
+            <td>" . htmlspecialchars($row['no']) . "</td>
+            <td>" . htmlspecialchars($row['nama']) . "</td>
+            <td>" . htmlspecialchars($row['kategori']) . "</td>
+            <td>" . htmlspecialchars($row['kondisi']) . "</td>
+            <td>" . htmlspecialchars($row['penanggung_jawab']) . "</td>
+            <td>" . htmlspecialchars($row['jumlah']) . "</td>
+            <td>
+                <a href='#' onclick='confirmDelete(" . $row['id'] . ")'>
+                    <img src='../../image/delete.png' style='height: 30px;' alt=''>
+                </a>
+                <a href='edit.php?id=" . $row['id'] . "'>
+                    <img src='../../image/edit.png' style='height: 30px; padding-left: 15px;' alt=''>
+                </a>
+            </td>
+        </tr>";
+    }
+} else {
+    echo "<tr><td colspan='7'>Belum ada data yang ditambahkan</td></tr>";
+}
 ?>

@@ -87,7 +87,7 @@ include '../../db.php'; // Pastikan jalur ini benar
     <div class="nav-links" style="margin-right: 710px;">
         <a href="../dashboard/dashboard.php">Beranda</a>
         <a href="#">Tanggal Penting</a>
-        <a href="../pengunguman/pengumuman.php">Pengumuman</a>
+        <a href="../pengunguman/pengunguman.php">Pengumuman</a>
         <a href="../surat_surat/surat_surat.php">Surat Menyurat</a>
         <div style="position: relative; display: inline-block;">
             <a href="#" style="text-decoration: none;">Arsip Surat</a>
@@ -138,14 +138,14 @@ include '../../db.php'; // Pastikan jalur ini benar
                 <th>Image</th>
                 <th>Tanggal</th>
                 <th>Deskripsi</th>
-                <th>Active</th>
+                <!-- <th>Active</th> -->
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
             <?php
             // Base query for fetching data
-            $query = "SELECT id, no, image, tanggal, deskripsi, active FROM pengunguman";
+            $query = "SELECT id, no, image, tanggal, deskripsi FROM pengunguman";
             
             // Check if search term is provided
             if (isset($_GET['search']) && !empty($_GET['search'])) {
@@ -175,12 +175,7 @@ include '../../db.php'; // Pastikan jalur ini benar
                             </td>
                             <td>" . htmlspecialchars($row['tanggal']) . "</td>
                             <td>" . htmlspecialchars($row['deskripsi']) . "</td>
-                            <td>
-                                <label class='switch'>
-                                    <input type='checkbox' $checked onclick='toggleActive(" . $row['id'] . ", this)'>
-                                    <span class='slider round'></span>
-                                </label>
-                            </td>
+                            
                             <td>
                                 <a href='#' onclick='confirmDelete(" . $row['id'] . ")'>
                                     <img src='../../image/delete.png' style='height: 30px;' alt=''>

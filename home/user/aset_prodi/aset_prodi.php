@@ -4,6 +4,7 @@ include '../../db.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,25 +42,22 @@ include '../../db.php';
             <img src="../../image/logo.png" alt="Logo" style="height: 50px;">
             <img src="../../image/login2.png" alt="Logo" style="height: 50px; margin-left: 10px;">
         </div>
-        <div class="nav-links" style="margin-right: 710px;">
-            <a href="../dashboard/dashboard.php">Beranda</a>
-            <a href="#">Tanggal Penting</a>
-            <a href="../pengunguman/pengunguman.html">Pengumuman</a>
-            <a href="../surat_surat/surat_surat.php">Surat Menyurat</a>
-        
-            <!-- Dropdown for "Arsip Surat" -->
+        <div class="nav-links" style="margin-right: 630px;">
+            <a href="../../user/dashboard/dashboard.php">Beranda</a>
+            <a href="../../user/tanggal_penting/tanggal_penting.php">Tanggal Penting</a>
+            <a href="../../user/pengunguman/pengunguman.php">Pengumuman</a>
+            <a href="../../user/surat_surat/surat_surat.php ">Surat Menyurat</a>
             <div style="position: relative; display: inline-block;">
                 <a href="#" style="text-decoration: none;">Arsip Surat</a>
-                <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;">
-                    <a href="../aset_masuk/aset_masuk.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
-                    <a href="../aset_keluar/aset_keluar.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
+                <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px  0px rgba(0,0,0,0.2); z-index: 1;">
+                    <a href="../../user/aset_masuk/aset_masuk.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
+                    <a href="../../user/aset_keluar/aset_keluar.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
                 </div>
             </div>
-            
-            <a href="../aset_prodi/aset_prodi.html">Aset Prodi</a>
+            <a href="../../user/aset_prodi/aset_prodi.php">Aset Prodi</a>
         </div>
         <div>
-           <a href="../profil/profil.html">
+           <a href="../../admin/profil/profil.php">
             <img src="../../image/prof.png"  style="height: 30px;" alt="">
            </a>
         </div>
@@ -96,24 +94,24 @@ include '../../db.php';
                     <th>Kondisi</th>
                     <th>Penanggung jawab</th>
                     <th>Jumlah</th>
-                    
+
                 </tr>
             </thead>
             <tbody>
                 <?php
                 // Base query for fetching data
                 $query = "SELECT id, no, nama, kategori, kondisi, penanggung_jawab, jumlah FROM aset_prodi";
-                
+
                 // Check if search term is provided
                 if (isset($_GET['search']) && !empty($_GET['search'])) {
                     $search = $_GET['search'];
                     $query .= " WHERE nama LIKE :search"; // Add search condition
                 }
-                
+
                 $query .= " ORDER BY id ASC"; // Add order by clause
-                
+
                 $stmt = $pdo->prepare($query);
-                
+
                 // Bind the search term if provided
                 if (isset($search)) {
                     $stmt->bindValue(':search', "%$search%", PDO::PARAM_STR);
@@ -180,4 +178,5 @@ include '../../db.php';
         }
     </script>
 </body>
+
 </html>

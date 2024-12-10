@@ -29,34 +29,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $no = $_POST['no'];
     $tanggal = $_POST['tanggal'];
     $deskripsi = $_POST['deskripsi'];
-    $active = $_POST['active'];
 
     // Ambil file gambar
     $image = $_FILES['image']['tmp_name'];
 
     // Validasi input
-    if (empty($no) || empty($tanggal) || empty($deskripsi) || empty($active)) {
+    if (empty($no) || empty($tanggal) || empty($deskripsi)) {
         echo "<script>alert('Semua field harus diisi!');</script>";
     } elseif ($_FILES['image']['error'] !== UPLOAD_ERR_OK && !empty($image)) {
         echo "<script>alert('Error uploading file: " . $_FILES['image']['error'] . "');</script>";
     } else {
-        // Jika gambar diupload, baca konten file gambar
-        if (!empty($image)) {
-            $imageData = file_get_contents($image);
-            // Siapkan query untuk memperbarui data dengan gambar
-            $query = "UPDATE pengunguman SET no = ?, image = ?,  tanggal = ?, deskripsi = ?, active = ? WHERE id = ?";
-            $stmt = $pdo->prepare($query);
-            $stmt->execute([$no, $imageData, $tanggal, $deskripsi, $active, $id]);
-        } else {
-            // Jika gambar tidak diupload, perbarui tanpa mengubah gambar
-            $query = "UPDATE pengunguman SET no = ?,  tanggal = ?, deskripsi = ?, active = ? WHERE id = ?";
-            $stmt = $pdo->prepare($query);
-            $stmt->execute([$no, $tanggal, $deskripsi, $active, $id]);;
-        }
+        try {
+            // Jika gambar diupload, baca konten file gambar
+            if (!empty($image)) {
+                $imageData = file_get_contents($image);
+                // Siapkan query untuk memperbarui data dengan gambar
+                $query = "UPDATE pengunguman SET no = ?, image = ?, tanggal = ?, deskripsi = ? WHERE id = ?";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute([$no, $imageData, $tanggal, $deskripsi, $id]);
+            } else {
+                // Jika gambar tidak diupload, perbarui tanpa mengubah gambar
+                $query = "UPDATE pengunguman SET no = ?, tanggal = ?, deskripsi = ? WHERE id = ?";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute([$no, $tanggal, $deskripsi, $id]);
+            }
 
-        // Redirect ke halaman aset_masuk.php
-        header("Location: create.php");
-        exit();
+            // Redirect ke halaman aset_masuk.php dengan pesan sukses
+            echo "<script>alert('Data berhasil diperbarui!'); window.location.href='create.php';</script>";
+            exit();
+        } catch (PDOException $e) {
+            echo "<script>alert('Terjadi kesalahan saat memperbarui data: " . $e->getMessage() . "');</script>";
+        }
     }
 }
 ?>
@@ -156,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" name="no" id="no" value="<?php echo htmlspecialchars($row['no']); ?>" required>
             </div>
             <div class="form-group">
-                <label for="image">Gambar (kosongkan jika tidak ingin mengubah):</label>
+                <label for="image">Gambar (Gambar Tidak melebihi 1mb):</label>
                 <input type="file" name="image" id="image" accept="image/*">
             </div>
             <div class="form-group">
@@ -166,10 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="tanggal">Deskripsi:</label>
                 <input type="text" name="deskripsi" id="deskripsi" value="<?php echo htmlspecialchars($row['deskripsi']); ?>" required>
             </div>
-            <div class="form-group">
-                <label for="id_masuk">Active:</label>
-                <input type="text" name="active" id="active" value="<?php echo htmlspecialchars($row['active']); ?>" required>
-            </div>
+
             <input type="submit" value="Perbarui">
         </form>
     </div>

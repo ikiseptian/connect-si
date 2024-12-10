@@ -4,6 +4,7 @@ include '../../db.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,12 +42,12 @@ include '../../db.php';
             <img src="../../image/logo.png" alt="Logo" style="height: 50px;">
             <img src="../../image/login2.png" alt="Logo" style="height: 50px; margin-left: 10px;">
         </div>
-        <div class="nav-links" style="margin-right: 950px;">
-            <a href="../dashboard/dashboard.php">Beranda</a>
-            <a href="../tanggal_pentiing/tanggal_penting.php">Tanggal Penting</a>
-            <a href="../pengunguman/pengunguman.html">Pengumuman</a>
+        <div class="nav-links" style="margin-right: 999px;">
+            <a href="../../mahasiswa/dashboard/dashboard.php">Beranda</a>
+            <a href="../../mahasiswa/tanggal_penting/tanggal_penting.php">Tanggal Penting</a>
+            <!-- <a href="../pengunguman/pengunguman.php">Pengumuman</a> -->
             <!-- <a href="../surat_surat/surat_surat.php">Surat Menyurat</a> -->
-        
+
             <!-- Dropdown for "Arsip Surat" -->
             <!-- <div style="position: relative; display: inline-block;">
                 <a href="#" style="text-decoration: none;">Arsip Surat</a>
@@ -55,13 +56,13 @@ include '../../db.php';
                     <a href="../aset_keluar/aset_keluar" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
                 </div>
             </div> -->
-            
+
             <!-- <a href="../aset_prodi/aset_prodi.php">Aset Prodi</a> -->
         </div>
         <div>
-           <a href="../profil/profil.html">
-            <img src="../../image/prof.png"  style="height: 30px;" alt="">
-           </a>
+            <a href="../../admin/profil/profil.php">
+                <img src="../../image/prof.png" style="height: 30px;" alt="">
+            </a>
         </div>
     </nav>
 
@@ -77,7 +78,7 @@ include '../../db.php';
         <div class="title-bar">
             <span>Tanggal penting</span>
             <div class="actions">
-               
+
 
                 <!-- Search form -->
                 <form method="GET" style="display: inline;">
@@ -98,30 +99,30 @@ include '../../db.php';
                 </tr>
             </thead>
             <tbody>
-            <?php
-                    // Menangani koneksi dan query dalam satu blok.
-                    $search = isset($_GET['search']) ? "%" . $_GET['search'] . "%" : "%";
-                    $query = "SELECT id, no, judul, DATE_FORMAT(tanggal, '%d %M %Y') AS tanggal_formatted , deskripsi FROM tanggal_penting WHERE judul LIKE ? ORDER BY tanggal ASC";
-                    $stmt = $pdo->prepare($query);
-                    $stmt->execute([$search]);
+                <?php
+                // Menangani koneksi dan query dalam satu blok.
+                $search = isset($_GET['search']) ? "%" . $_GET['search'] . "%" : "%";
+                $query = "SELECT id, no, judul, DATE_FORMAT(tanggal, '%d %M %Y') AS tanggal_formatted , deskripsi FROM tanggal_penting WHERE judul LIKE ? ORDER BY tanggal ASC";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute([$search]);
 
-                    // Memeriksa apakah ada data yang ditemukan
-                    if ($stmt && $stmt->rowCount() > 0) {
-                        // Menampilkan hasil query dalam tabel
-                        while ($date = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            echo "<tr>
+                // Memeriksa apakah ada data yang ditemukan
+                if ($stmt && $stmt->rowCount() > 0) {
+                    // Menampilkan hasil query dalam tabel
+                    while ($date = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        echo "<tr>
                                     <td>" . htmlspecialchars($date['no']) . "</td>
                                     <td>" . htmlspecialchars($date['judul']) . "</td>
                                     <td>" . htmlspecialchars($date['tanggal_formatted']) . "</td>
                                     <td>" . htmlspecialchars($date['deskripsi']) . "</td>
                                 
                                   </tr>";
-                        }
-                    } else {
-                        // Jika tidak ada data ditemukan
-                        echo "<tr><td colspan='3'>Belum ada tanggal penting yang ditambahkan</td></tr>";
                     }
-                    ?>
+                } else {
+                    // Jika tidak ada data ditemukan
+                    echo "<tr><td colspan='3'>Belum ada tanggal penting yang ditambahkan</td></tr>";
+                }
+                ?>
             </tbody>
         </table>
     </div>
@@ -164,4 +165,5 @@ include '../../db.php';
         }
     </script>
 </body>
+
 </html>

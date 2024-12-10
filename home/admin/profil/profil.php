@@ -5,18 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Mahasiswa</title>
     <link rel="stylesheet" href="../../css/styles.css">
+    <script>
+        // Function to handle logout action
+        function logout() {
+            // Clear the user session or authentication token here (for example, clearing localStorage or sessionStorage)
+            localStorage.removeItem('userLoggedIn'); // Example for localStorage. You can use sessionStorage or cookies if needed.
+
+            // Redirect the user to the login page or any page after logout
+            window.location.href = '../../login/login.php'; // Change the path to the actual login page
+        }
+    </script>
 </head>
 <body>
-    <nav class="navbar">
+<nav class="navbar">
         <div class="logo">
             <img src="../../image/logo.png" alt="Logo" style="height: 50px;">
             <img src="../../image/login2.png" alt="Logo" style="height: 50px; margin-left: 10px;">
         </div>
-        <div class="nav-links" style="margin-right: 710px;">
+        <div class="nav-links" style="margin-right: 630px;">
             <a href="../dashboard/dashboard.php">Beranda</a>
-            <a href="#">Tanggal Penting</a>
-            <a href="../pengunguman/pengunguman.html">Pengumuman</a>
-            <a href="../surat_surat/surat_surat.html">Surat Menyurat</a>
+            <a href="../tanggal_penting/tanggal_penting.php">Tanggal Penting</a>
+            <a href="../pengunguman/pengunguman.php">Pengumuman</a>
+            <a href="../surat_surat/surat_surat.php">Surat Menyurat</a>
         
             <!-- Dropdown for "Arsip Surat" -->
             <div style="position: relative; display: inline-block;">
@@ -30,12 +40,12 @@
             <a href="../aset_prodi/aset_prodi.php">Aset Prodi</a>
         </div>
         <div>
-            <a href="../profil/profil.html">
-                <img src="../../image/login2.png"  style="height: 30px;" alt="">
-            </a>
+           <a href="../profil/profil.php">
+            <img src="../../image/prof.png"  style="height: 30px;" alt="">
+           </a>
         </div>
     </nav>
-  <div > 
+  <div> 
     <a href="../dashboard/dashboard.html">
         <img src="../../image/back1.png" style="height: 40px; margin-left: 20px; margin-top: 10px;" alt="">
     </a>
@@ -46,7 +56,8 @@
             <p class="profile-status">Mahasiswa</p>
             <p class="profile-nim">NIM 666</p>
             <h3 class="arsip-title">ARSIP SURAT</h3>
-            <button class="logout-btn">KELUAR</button>
+            <!-- Logout button with onclick event -->
+            <button class="logout-btn" onclick="logout()">KELUAR</button>
         </div>
     </div>
     <script src="../../js/drop.js"></script>

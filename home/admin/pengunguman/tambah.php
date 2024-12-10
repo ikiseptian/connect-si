@@ -6,13 +6,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $no = $_POST['no'];
     $tanggal = $_POST['tanggal'];
     $deskripsi = $_POST['deskripsi'];
-    $active = $_POST['active'];
+    // $active = $_POST['active'];
 
     // Ambil file gambar
     $image = $_FILES['image']['tmp_name'];
 
     // Validasi input
-    if (empty($no) || empty($image) || empty($tanggal) || empty($deskripsi)|| empty($active) ) {
+    if (empty($no) || empty($image) || empty($tanggal) || empty($deskripsi) ) {
         echo "<script>alert('Semua field harus diisi!');</script>";
     } elseif ($_FILES['image']['error'] !== UPLOAD_ERR_OK) {
         echo "<script>alert('Error uploading file: " . $_FILES['image']['error'] . "');</script>";
@@ -21,13 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imageData = file_get_contents($image);
 
         // Siapkan query untuk menyisipkan data
-        $query = "INSERT INTO pengunguman (no, image, tanggal, deskripsi, active) 
-                  VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO pengunguman (no, image, tanggal, deskripsi) 
+                  VALUES (?, ?, ?, ?)";
         $stmt = $pdo->prepare($query);
 
         // Eksekusi query dengan data yang diberikan
         try {
-            $stmt->execute([$no, $imageData, $tanggal, $deskripsi, $active]);
+            $stmt->execute([$no, $imageData, $tanggal, $deskripsi ]);
 
             // Redirect ke halaman aset_masuk.php
             header("Location: create.php");
@@ -145,10 +145,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="tanggal">Deskripsi:</label>
                 <input type="text" name="deskripsi" id="deskripsi" required>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label for="id_masuk">Active:</label>
                 <input type="text" name="active" id="active">
-            </div>
+            </div> -->
             <input type="submit" value="Simpan">
         </form>
     </div>

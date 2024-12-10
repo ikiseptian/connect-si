@@ -2,25 +2,26 @@
 include '../../db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get the data from the form
-    $no = $_POST['no']; // Ensure this matches the field name in the form
+    // Ambil data dari form
+    $no = $_POST['no'];
     $judul = $_POST['judul'];
     $tanggal = $_POST['tanggal'];
-    
+    $deskripsi = $_POST['deskripsi']; // Pastikan deskripsi ditangkap
+
     try {
-        // Prepare the query
+        // Siapkan query
         $query = "INSERT INTO tanggal_penting (no, judul, tanggal, deskripsi) 
                   VALUES (?, ?, ?, ?)";
         $stmt = $pdo->prepare($query);
-        
-        // Execute the query with the provided data
-        $stmt->execute([$no, $judul, $tanggal]);
 
-        // Redirect to the aset_prodi.php page
+        // Eksekusi query dengan data yang dikirim
+        $stmt->execute([$no, $judul, $tanggal, $deskripsi]);
+
+        // Redirect ke halaman lain
         header("Location: tanggal_penting.php");
-        exit(); // Ensure no further code is executed after the redirect
+        exit();
     } catch (PDOException $e) {
-        // Handle any errors (e.g., database issues)
+        // Tangani error
         echo "Error: " . $e->getMessage();
     }
 }

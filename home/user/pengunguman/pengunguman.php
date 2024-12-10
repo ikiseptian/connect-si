@@ -9,6 +9,7 @@ $stmt->execute();
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,31 +18,29 @@ $stmt->execute();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
+
 <body>
-<nav class="navbar">
+    <nav class="navbar">
         <div class="logo">
             <img src="../../image/logo.png" alt="Logo" style="height: 50px;">
             <img src="../../image/login2.png" alt="Logo" style="height: 50px; margin-left: 10px;">
         </div>
         <div class="nav-links" style="margin-right: 630px;">
-            <a href="../dashboard/dashboard.php">Beranda</a>
-            <a href="../tanggal_penting/tanggal_penting.php">Tanggal Penting</a>
-            <a href="../pengunguman/pengunguman.php">Pengumuman</a>
-            <a href="../surat_surat/surat_surat.php">Surat Menyurat</a>
-        
-            <!-- Dropdown for "Arsip Surat" -->
+            <a href="../../user/dashboard/dashboard.php">Beranda</a>
+            <a href="../../user/tanggal_penting/tanggal_penting.php">Tanggal Penting</a>
+            <a href="../../user/pengunguman/pengunguman.php">Pengumuman</a>
+            <a href="../../user/surat_surat/surat_surat.php ">Surat Menyurat</a>
             <div style="position: relative; display: inline-block;">
                 <a href="#" style="text-decoration: none;">Arsip Surat</a>
-                <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1;">
-                    <a href="../aset_masuk/aset_masuk.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
-                    <a href="../aset_keluar/aset_keluar.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
+                <div style="display: none; position: absolute; background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px  0px rgba(0,0,0,0.2); z-index: 1;">
+                    <a href="../../user/aset_masuk/aset_masuk.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Masuk</a>
+                    <a href="../../user/aset_keluar/aset_keluar.php" style="color: black; padding: 12px 16px; text-decoration: none; display: block;">Aset Keluar</a>
                 </div>
             </div>
-            
-            <a href="../aset_prodi/aset_prodi.php">Aset Prodi</a>
+            <a href="../../user/aset_prodi/aset_prodi.php">Aset Prodi</a>
         </div>
         <div>
-           <a href="../profil/profil.php">
+           <a href="../../admin/profil/profil.php">
             <img src="../../image/prof.png"  style="height: 30px;" alt="">
            </a>
         </div>
@@ -99,7 +98,7 @@ $stmt->execute();
                 prevEl: '.swiper-button-prev',
             },
             on: {
-                slideChange: function () {
+                slideChange: function() {
                     const index = this.realIndex;
                     const descriptions = <?php echo json_encode(array_column($announcements, "deskripsi")); ?>;
                     document.getElementById('announcement-description').innerHTML = '<p>' + descriptions[index] + '</p>';
@@ -110,4 +109,5 @@ $stmt->execute();
     <script src="../../js/drop.js"></script>
     <script src="../../js/oy.js"></script>
 </body>
+
 </html>
